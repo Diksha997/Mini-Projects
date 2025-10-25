@@ -1,0 +1,183 @@
+Import ‘package:flutter/material.dart’;
+
+Void main() {
+
+runApp(port1());
+
+}
+
+Class port1 extends StatelessWidget {
+
+@override
+
+Widget build(BuildContext context) {
+
+Return MaterialApp(
+
+initialRoute: ‘/’,
+
+routes: {
+
+‘/’: (context) => PortfolioHomePage(),
+
+‘/skills’: (context) => SkillsPage(),
+
+},
+
+);
+
+}
+
+}
+
+Class PortfolioHomePage extends StatelessWidget {
+
+@override
+
+Widget build(BuildContext context) {
+
+Return Scaffold(
+
+appBar: AppBar(
+
+title: Text(‘My Portfolio’),
+
+), 
+ Body: Center(
+
+Child: SingleChildScrollView(
+
+Child: Column(
+
+mainAxisAlignment: MainAxisAlignment.center,
+
+children: [
+
+CircleAvatar(
+
+Radius: 80,
+
+backgroundImage: AssetImage(‘assets/profile.jpg’),
+
+),
+
+SizedBox(height: 20),
+
+Text(
+
+‘Welcome to My Portfolio’,
+
+Style: TextStyle(
+
+fontSize: 24,
+
+fontWeight: FontWeight.bold,
+
+),
+
+textAlign: TextAlign.center,
+
+),
+
+SizedBox(height: 20),
+
+Padding(
+
+Padding: const EdgeInsets.all(16.0),
+
+Child: Text(
+
+‘Hello! I am Diksha Lanjiwar, a first year btech student in IGDTUW. I love coding and I am intrested in various application of aiml in everyday life’,
+
+Style: TextStyle(fontSize: 16),
+
+textAlign: TextAlign.center,
+
+),
+
+),
+
+SizedBox(height: 20),
+
+ElevatedButton(
+
+onPressed: () {
+
+Navigator.pushNamed(context, ‘/skills’);
+
+},
+
+Child: Text(‘Skills’),
+
+),
+
+],
+
+),
+
+),
+
+),
+
+);
+
+}
+
+}
+
+Class SkillsPage extends StatelessWidget {
+
+@override
+
+Widget build(BuildContext context) {
+
+Return Scaffold(
+
+appBar: AppBar(
+
+title: Text(‘Skills’),
+
+),
+
+Body: Center(
+
+Child: Column(
+
+mainAxisAlignment: MainAxisAlignment.center,
+
+children: [
+
+Text(
+
+‘Skills Page’,
+
+Style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+
+),
+
+SizedBox(height: 20),
+
+ElevatedButton(
+
+onPressed: () {
+
+Navigator.pop(context);
+
+},
+
+Child: Text(‘Back’),
+
+),
+
+],
+
+),
+
+),
+
+);
+
+}
+
+}
+
