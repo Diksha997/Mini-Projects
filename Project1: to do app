@@ -1,82 +1,182 @@
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+Import ‘package:flutter/material.dart’; 
+Void main() {
 
-void main() {
-  runApp(const MyApp());
+runApp(port1());
+
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+Class port1 extends StatelessWidget {
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Weather App',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: const HomePage(),
-    );
-  }
+@override
+
+Widget build(BuildContext context) {
+
+Return MaterialApp(
+
+initialRoute: ‘/’,
+
+routes: {
+
+‘/’: (context) => PortfolioHomePage(),
+
+‘/skills’: (context) => SkillsPage(),
+
+},
+
+);
+
 }
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
-
-  @override
-  _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  String city = "Delhi";
-  String apiKey = "56b71e152d35c62719e6208e7be45b4d";
-  String temperature = "Loading...";
-  List<String> forecast = [];
+Class PortfolioHomePage extends StatelessWidget {
 
-  @override
-  void initState() {
-    super.initState();
-    fetchWeather();
-  }
+@override
 
-  Future<void> fetchWeather() async {
-    final url = "https://api.openweathermap.org/data/2.5/forecast?q=$city&appid=$apiKey&units=metric";
-    final response = await http.get(Uri.parse(url));
+Widget build(BuildContext context) {
 
-    if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      setState(() {
-        temperature = "${data['list'][0]['main']['temp']}°C";
-        forecast = List.generate(7, (i) {
-          return "${data['list'][i * 8]['dt_txt'].split(' ')[0]}: ${data['list'][i * 8]['main']['temp']}°C";
-        });
-      });
-    } else {
-      setState(() {
-        temperature = "Error";
-        forecast = ["Failed to load data"];
-      });
-    }
-  }
+Return Scaffold(
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Weather App')),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('Current Temperature in $city: $temperature', style: const TextStyle(fontSize: 18)),
-            const SizedBox(height: 20),
-            ElevatedButton(onPressed: fetchWeather, child: const Text('Refresh')),
-            const SizedBox(height: 20),
-            const Text('7-Day Forecast:', style: TextStyle(fontSize: 18)),
-            Column(
-              children: forecast.map((day) => Text(day)).toList(),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+appBar: AppBar(
+
+title: Text(‘My Portfolio’),
+
+),
+
+Body: Center(
+
+Child: SingleChildScrollView(
+
+Child: Column(
+
+mainAxisAlignment: MainAxisAlignment.center,
+
+children: [
+
+CircleAvatar(
+
+Radius: 80,
+
+backgroundImage: AssetImage(‘assets/profile.jpg’),
+
+),
+
+SizedBox(height: 20),
+
+Text(
+
+‘Welcome to My Portfolio’,
+
+Style: TextStyle(
+
+fontSize: 24,
+
+fontWeight: FontWeight.bold,
+
+),
+
+textAlign: TextAlign.center,
+
+),
+
+SizedBox(height: 20),
+
+Padding(
+
+Padding: const EdgeInsets.all(16.0),
+
+Child: Text(
+
+‘Hello! I am Diksha Lanjiwar, a first year btech student in IGDTUW. I love coding and I am intrested in various application of aiml in everyday life’,
+
+Style: TextStyle(fontSize: 16),
+
+textAlign: TextAlign.center,
+
+),
+
+),
+
+SizedBox(height: 20),
+
+ElevatedButton(
+
+onPressed: () {
+
+Navigator.pushNamed(context, ‘/skills’);
+
+},
+
+Child: Text(‘Skills’),
+
+),
+
+],
+
+),
+
+),
+
+),
+
+);
+
 }
+
+}
+
+Class SkillsPage extends StatelessWidget {
+
+@override
+
+Widget build(BuildContext context) {
+
+Return Scaffold(
+
+appBar: AppBar(
+
+title: Text(‘Skills’),
+
+),
+
+Body: Center(
+
+Child: Column(
+
+mainAxisAlignment: MainAxisAlignment.center,
+
+children: [
+
+Text(
+
+‘Skills Page’,
+
+Style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+
+),
+
+SizedBox(height: 20),
+
+ElevatedButton(
+
+onPressed: () {
+
+Navigator.pop(context);
+
+},
+
+Child: Text(‘Back’),
+
+),
+
+],
+
+),
+
+),
+
+);
+
+}
+
+} 
